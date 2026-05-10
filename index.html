@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kamalesh Kumar | Full Stack Engineer</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        :root {
+            --bg: #050816;
+            --card: rgba(255, 255, 255, 0.07);
+            --glass: rgba(255, 255, 255, 0.05);
+            --primary: #7c3aed;
+            --secondary: #06b6d4;
+            --text: #ffffff;
+            --light: #cbd5e1;
+            --border: rgba(255, 255, 255, 0.1);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background:
+                radial-gradient(circle at top left, #1e1b4b 0%, transparent 30%),
+                radial-gradient(circle at bottom right, #0f172a 0%, transparent 30%),
+                var(--bg);
+            color: var(--text);
+            overflow-x: hidden;
+        }
+
+        /* Navbar */
+
+        nav {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 999;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid var(--border);
+            backdrop-filter: blur(20px);
+            border-radius: 50px;
+            padding: 1rem 2rem;
+        }
+
+        nav ul {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--secondary);
+        }
+
+        /* Hero */
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 2rem;
+            position: relative;
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(var(--primary), transparent 70%);
+            filter: blur(120px);
+            opacity: 0.4;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .profile-image {
+            width: 180px;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 4px solid rgba(255, 255, 255, 0.1);
+            margin-bottom: 2rem;
+            box-shadow: 0 0 40px rgba(124, 58, 237, 0.5);
+        }
+
+        h1 {
+            font-size: 4rem;
+            font-weight: 800;
+            background: linear-gradient(90deg, #7c3aed, #06b6d4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            margin-top: 1rem;
+            color: var(--light);
+            font-size: 1.1rem;
+            max-width: 700px;
+            line-height: 1.8;
+            margin-inline: auto;
+        }
+
+        .hero-buttons {
+            margin-top: 2rem;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 1rem 2rem;
+            border-radius: 14px;
+            text-decoration: none;
+            color: white;
+            font-weight: 600;
+            background: linear-gradient(135deg,
+                    var(--primary),
+                    var(--secondary));
+            transition: 0.3s ease;
+            box-shadow: 0 10px 30px rgba(124, 58, 237, 0.3);
+        }
+
+        .btn:hover {
+            transform: translateY(-5px);
+        }
+
+        /* Section */
+
+        section {
+            padding: 6rem 10%;
+        }
+
+        .section-title {
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .section-sub {
+            color: var(--light);
+            margin-bottom: 3rem;
+        }
+
+        /* Cards */
+
+        .glass-card {
+            background: var(--glass);
+            border: 1px solid var(--border);
+            backdrop-filter: blur(20px);
+            border-radius: 24px;
+            padding: 2rem;
+            transition: 0.4s ease;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+        }
+
+        /* About */
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        /* Skills */
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 1rem;
+        }
+
+        .tech-stack span {
+            padding: 0.6rem 1rem;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.07);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            font-size: 0.9rem;
+        }
+
+        /* Experience */
+
+        .timeline {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .timeline h3 {
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline p {
+            color: var(--light);
+            line-height: 1.7;
+        }
+
+        /* Projects */
+
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            overflow: hidden;
+        }
+
+        .project-img {
+            height: 200px;
+            border-radius: 16px;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg,
+                    var(--primary),
+                    var(--secondary));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+        }
+
+        .project-card p {
+            color: var(--light);
+            margin-top: 1rem;
+            line-height: 1.7;
+        }
+
+        /* Contact */
+
+        .contact {
+            text-align: center;
+        }
+
+        .contact p {
+            color: var(--light);
+            margin-top: 1rem;
+        }
+
+        .socials {
+            margin-top: 2rem;
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .socials a {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.08);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        .socials a:hover {
+            transform: translateY(-5px);
+            background: var(--primary);
+        }
+
+
+        footer {
+            padding: 2rem;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            color: var(--light);
+        }
+
+        /* Animation */
+
+        .hidden {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 1s ease;
+        }
+
+        .show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Cursor Glow */
+
+        .cursor-glow {
+            position: fixed;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle,
+                    rgba(124, 58, 237, 0.2),
+                    transparent 70%);
+            pointer-events: none;
+            transform: translate(-50%, -50%);
+            z-index: 0;
+        }
+
+        @media(max-width: 768px) {
+
+            nav ul {
+                gap: 1rem;
+            }
+
+            h1 {
+                font-size: 2.8rem;
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+
+            section {
+                padding: 5rem 7%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="cursor-glow"></div>
+
+    <title>Kamalesh Kumar | Full Stack Engineer</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+
+
+    <!-- HERO -->
+
+    <section class="hero">
+
+        <div class="hero-content">
+
+            <img src="Kamalesh_Kumar_photo.jpeg" class="profile-image" />
+
+            <h1>Kamalesh Kumar</h1>
+
+            <p>
+                Full Stack Software Engineer specializing in scalable SaaS
+                platforms, cloud-native microservices, AWS optimization,
+                React.js, Java, and modern backend systems.
+            </p>
+
+            <div class="hero-buttons">
+                <a href="#contact" class="btn">Let's Connect</a>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- ABOUT -->
+
+    <section id="about" class="hidden">
+
+        <h2 class="section-title">About Me</h2>
+
+        <p class="section-sub">
+            Passionate about building high-performance products and scalable systems.
+        </p>
+
+        <div class="about-grid">
+
+            <div class="glass-card">
+                <h3>Who I Am</h3>
+                <p style="margin-top:1rem; color:var(--light); line-height:1.8;">
+                    I’m a Full Stack Engineer with 3+ years of experience
+                    building enterprise SaaS products at PowerSchool.
+                    I specialize in cloud architecture, scalable backend systems,
+                    modern frontend experiences, and performance optimization.
+                </p>
+            </div>
+
+            <div class="glass-card">
+                <h3>Highlights</h3>
+
+                <div class="tech-stack">
+                    <span>3+ Years Experience</span>
+                    <span>Java</span>
+                    <span>React.js</span>
+                    <span>AWS</span>
+                    <span>Microservices</span>
+                    <span>Docker</span>
+                    <span>Kubernetes</span>
+                    <span>Node.js</span>
+                </div>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- SKILLS -->
+
+    <section id="skills" class="hidden">
+
+        <h2 class="section-title">Skills</h2>
+
+        <p class="section-sub">
+            Technologies I work with daily.
+        </p>
+
+        <div class="skills-grid">
+
+            <div class="glass-card">
+                <h3>Frontend</h3>
+
+                <div class="tech-stack">
+                    <span>React.js</span>
+                    <span>JavaScript</span>
+                    <span>TypeScript</span>
+                    <span>HTML5</span>
+                    <span>CSS3</span>
+                </div>
+            </div>
+
+            <div class="glass-card">
+                <h3>Backend</h3>
+
+                <div class="tech-stack">
+                    <span>Java</span>
+                    <span>Spring Boot</span>
+                    <span>Node.js</span>
+                    <span>PHP</span>
+                    <span>REST APIs</span>
+                </div>
+            </div>
+
+            <div class="glass-card">
+                <h3>Cloud & DevOps</h3>
+
+                <div class="tech-stack">
+                    <span>AWS</span>
+                    <span>Docker</span>
+                    <span>Kubernetes</span>
+                    <span>CI/CD</span>
+                    <span>Linux</span>
+                </div>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- EXPERIENCE -->
+
+    <section id="experience" class="hidden">
+
+        <h2 class="section-title">Experience</h2>
+
+        <div class="timeline">
+
+            <div class="glass-card">
+                <h3>Associate Software Developer II</h3>
+                <p>PowerSchool India • 2022 - 2025</p>
+
+                <p style="margin-top:1rem;">
+                    Built scalable LMS features, optimized AWS infrastructure,
+                    reduced production defects, and developed cloud-native
+                    microservices for enterprise applications.
+                </p>
+            </div>
+
+            <div class="glass-card">
+                <h3>Full Stack Development</h3>
+                <p>React • Java • AWS</p>
+
+                <p style="margin-top:1rem;">
+                    Worked across frontend and backend systems with focus on
+                    scalable architecture, performance optimization,
+                    and modern UI development.
+                </p>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- PROJECTS -->
+
+    <section id="projects" class="hidden">
+
+        <h2 class="section-title">Projects</h2>
+
+        <div class="project-grid">
+
+            <div class="glass-card project-card">
+
+                <div class="project-img">🚀</div>
+
+                <h3>Schoology LMS</h3>
+
+                <p>
+                    Enterprise LMS platform supporting large-scale student
+                    management and learning workflows.
+                </p>
+
+            </div>
+
+            <div class="glass-card project-card">
+
+                <div class="project-img">⚡</div>
+
+                <h3>AWS Optimization</h3>
+
+                <p>
+                    Reduced infrastructure costs and improved performance
+                    using scalable cloud-native architecture.
+                </p>
+
+            </div>
+
+            <div class="glass-card project-card">
+
+                <div class="project-img">💻</div>
+
+                <h3>Full Stack Systems</h3>
+
+                <p>
+                    Developed end-to-end applications using React,
+                    Node.js, Java, and REST APIs.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- CONTACT -->
+
+    <section id="contact" class="contact hidden">
+
+        <h2 class="section-title">Let's Connect</h2>
+
+        <p>
+            Open to full-time opportunities, freelance work,
+            and exciting collaborations.
+        </p>
+
+        <div class="socials">
+
+            <a href="mailto:skamaleshkumar25082000@gmail.com">✉️</a>
+
+            <a href="https://www.linkedin.com/in/s-kamalesh-kumar-a7482a17b/" target="_blank">in</a>
+
+            <a href="#">⚙️</a>
+
+        </div>
+
+    </section>
+
+    <!-- FOOTER -->
+
+    <footer>
+        © 2026 Kamalesh Kumar • Full Stack Software Engineer
+    </footer>
+
+    <!-- JS -->
+
+    <script>
+
+        // Scroll Animation
+
+        const observer = new IntersectionObserver((entries) => {
+
+            entries.forEach((entry) => {
+
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('show');
+                }
+
+            });
+
+        });
+
+        document.querySelectorAll('.hidden').forEach((el) => {
+            observer.observe(el);
+        });
+
+        // Cursor Glow
+
+        const glow = document.querySelector('.cursor-glow');
+
+        document.addEventListener('mousemove', (e) => {
+
+            glow.style.left = e.clientX + 'px';
+            glow.style.top = e.clientY + 'px';
+
+        });
+
+    </script>
+
+</body>
+
+</html>
+```
