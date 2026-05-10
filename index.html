@@ -37,27 +37,55 @@
                 var(--bg);
             color: var(--text);
             overflow-x: hidden;
+            padding-top: 80px;
         }
 
         /* Navbar */
 
         nav {
             position: fixed;
-            top: 20px;
-            left: 50%;
-            transform: translateX(-50%);
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(5, 8, 22, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
             z-index: 999;
-            background: rgba(255, 255, 255, 0.06);
-            border: 1px solid var(--border);
-            backdrop-filter: blur(20px);
-            border-radius: 50px;
-            padding: 1rem 2rem;
+        }
+
+        nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .logo {
+            font-size: 1.3rem;
+            font-weight: 700;
+            background: linear-gradient(90deg, #7c3aed, #06b6d4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
         }
 
         nav ul {
+            list-style: none;
             display: flex;
             gap: 2rem;
-            list-style: none;
+            margin: 0;
         }
 
         nav a {
@@ -65,10 +93,39 @@
             text-decoration: none;
             font-size: 0.95rem;
             transition: 0.3s;
+            font-weight: 500;
         }
 
         nav a:hover {
             color: var(--secondary);
+        }
+
+        .nav-socials {
+            display: flex;
+            gap: 0.8rem;
+            align-items: center;
+        }
+
+        .nav-socials a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 38px;
+            height: 38px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border-radius: 50%;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .nav-socials a:hover {
+            background: var(--primary);
+            border-color: var(--primary);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(124, 58, 237, 0.3);
         }
 
         /* Hero */
@@ -136,9 +193,7 @@
             text-decoration: none;
             color: white;
             font-weight: 600;
-            background: linear-gradient(135deg,
-                    var(--primary),
-                    var(--secondary));
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
             transition: 0.3s ease;
             box-shadow: 0 10px 30px rgba(124, 58, 237, 0.3);
         }
@@ -243,9 +298,7 @@
             height: 200px;
             border-radius: 16px;
             margin-bottom: 1rem;
-            background: linear-gradient(135deg,
-                    var(--primary),
-                    var(--secondary));
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
             display: flex;
             align-items: center;
             justify-content: center;
@@ -273,7 +326,8 @@
             margin-top: 2rem;
             display: flex;
             justify-content: center;
-            gap: 1rem;
+            gap: 1.5rem;
+            flex-wrap: wrap;
         }
 
         .socials a {
@@ -281,19 +335,22 @@
             height: 50px;
             border-radius: 50%;
             background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.2);
             display: flex;
             justify-content: center;
             align-items: center;
             color: white;
             text-decoration: none;
             transition: 0.3s;
+            font-size: 1.2rem;
         }
 
         .socials a:hover {
             transform: translateY(-5px);
             background: var(--primary);
+            border-color: var(--primary);
+            box-shadow: 0 10px 25px rgba(124, 58, 237, 0.3);
         }
-
 
         footer {
             padding: 2rem;
@@ -321,18 +378,28 @@
             position: fixed;
             width: 300px;
             height: 300px;
-            background: radial-gradient(circle,
-                    rgba(124, 58, 237, 0.2),
-                    transparent 70%);
+            background: radial-gradient(circle, rgba(124, 58, 237, 0.2), transparent 70%);
             pointer-events: none;
             transform: translate(-50%, -50%);
             z-index: 0;
         }
 
         @media(max-width: 768px) {
+            nav-container {
+                flex-direction: column;
+                gap: 1rem;
+            }
 
             nav ul {
                 gap: 1rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .nav-socials {
+                gap: 0.5rem;
+                flex-wrap: wrap;
+                justify-content: center;
             }
 
             h1 {
@@ -344,7 +411,7 @@
             }
 
             section {
-                padding: 5rem 7%;
+                padding: 5rem 5%;
             }
         }
     </style>
@@ -354,260 +421,349 @@
 
     <div class="cursor-glow"></div>
 
-    <title>Kamalesh Kumar | Full Stack Engineer</title>
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-
-
+    <!-- NAVBAR -->
+    <nav>
+        <nav-container>
+            <a href="#hero" class="logo">👨‍💻 Kamalesh</a>
+            <ul>
+                <li><a href="#hero">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="nav-socials">
+                <a href="https://www.linkedin.com/in/s-kamalesh-kumar-a7482a17b/" target="_blank"
+                    title="LinkedIn">in</a>
+                <a href="https://github.com/iyambyte" target="_blank" title="GitHub">⚙️</a>
+                <a href="https://medium.com/@skamaleshkumar25082000" target="_blank" title="Medium">📝</a>
+                <a href="https://www.instagram.com/santa_kamal_/" target="_blank" title="Instagram">📸</a>
+                <a href="https://www.facebook.com/profile.php?id=100055764216335" target="_blank" title="Facebook">f</a>
+                <a href="https://builder.aws.com/community/@kammukamal" target="_blank" title="AWS Builder">🏗️</a>
+                <a href="mailto:skamaleshkumar25082000@gmail.com" title="Email">✉️</a>
+            </div>
+        </nav-container>
+    </nav>
 
     <!-- HERO -->
-
     <section class="hero">
-
         <div class="hero-content">
-
-            <img src="Kamalesh_Kumar_photo.jpeg" class="profile-image" />
-
+            <img src="kamalesh-photo.jpeg" class="profile-image" />
             <h1>Kamalesh Kumar</h1>
-
             <p>
-                Full Stack Software Engineer specializing in scalable SaaS
-                platforms, cloud-native microservices, AWS optimization,
-                React.js, Java, and modern backend systems.
+                Results-driven Full Stack Software Engineer with 3+ years of experience delivering production-grade SaaS
+                solutions. Specialized in cloud-native microservices, AWS infrastructure optimization ($600+ annualized
+                savings), and full-stack development across React.js, Java, PHP, Node.js, and modern backend systems.
+                Proven track record of reducing post-production defects by 30% and building enterprise solutions
+                impacting thousands of users.
             </p>
-
             <div class="hero-buttons">
                 <a href="#contact" class="btn">Let's Connect</a>
             </div>
-
         </div>
-
     </section>
 
     <!-- ABOUT -->
-
     <section id="about" class="hidden">
-
         <h2 class="section-title">About Me</h2>
-
         <p class="section-sub">
-            Passionate about building high-performance products and scalable systems.
+            Passionate about building high-performance SaaS products and scalable systems.
         </p>
-
         <div class="about-grid">
-
             <div class="glass-card">
                 <h3>Who I Am</h3>
                 <p style="margin-top:1rem; color:var(--light); line-height:1.8;">
-                    I’m a Full Stack Engineer with 3+ years of experience
-                    building enterprise SaaS products at PowerSchool.
-                    I specialize in cloud architecture, scalable backend systems,
-                    modern frontend experiences, and performance optimization.
+                    Results-driven Full Stack Software Engineer with 3+ years of experience building scalable,
+                    high-performance SaaS products at PowerSchool India. I deliver production-grade features for the
+                    Schoology LMS—a multi-tenant enterprise platform serving thousands of students globally.
+                    <br><br>
+                    My expertise spans full-stack development: PHP, Drupal, Laravel, Node.js, Java, Spring Boot on
+                    backend; React.js, TypeScript, JavaScript on frontend. I'm proficient in cloud-native microservices
+                    architecture, AWS infrastructure design and optimization, CI/CD automation, Docker, and Kubernetes.
+                    <br><br>
+                    I'm passionate about solving complex technical challenges, optimizing system performance, and
+                    collaborating with global teams. Currently exploring Full Stack Developer roles at product-driven
+                    companies where I can contribute expertise in scalable architecture and cloud innovation.
                 </p>
             </div>
-
             <div class="glass-card">
-                <h3>Highlights</h3>
-
+                <h3>Key Achievements</h3>
                 <div class="tech-stack">
-                    <span>3+ Years Experience</span>
-                    <span>Java</span>
-                    <span>React.js</span>
-                    <span>AWS</span>
-                    <span>Microservices</span>
-                    <span>Docker</span>
-                    <span>Kubernetes</span>
-                    <span>Node.js</span>
+                    <span>3+ Years Enterprise SaaS</span>
+                    <span>$6,000+ AWS Savings</span>
+                    <span>30% Defect Reduction</span>
+                    <span>1000+ Users Impacted</span>
+                    <span>PHP & Drupal Expert</span>
+                    <span>Microservices Architecture</span>
+                    <span>Multi-language Localization</span>
+                    <span>Production Incident Response</span>
                 </div>
             </div>
-
         </div>
-
     </section>
 
     <!-- SKILLS -->
-
     <section id="skills" class="hidden">
-
-        <h2 class="section-title">Skills</h2>
-
+        <h2 class="section-title">Skills & Technologies</h2>
         <p class="section-sub">
-            Technologies I work with daily.
+            Core technologies and frameworks I work with daily.
         </p>
-
         <div class="skills-grid">
-
             <div class="glass-card">
-                <h3>Frontend</h3>
-
+                <h3>Languages</h3>
                 <div class="tech-stack">
-                    <span>React.js</span>
+                    <span>PHP</span>
                     <span>JavaScript</span>
                     <span>TypeScript</span>
-                    <span>HTML5</span>
-                    <span>CSS3</span>
-                </div>
-            </div>
-
-            <div class="glass-card">
-                <h3>Backend</h3>
-
-                <div class="tech-stack">
                     <span>Java</span>
-                    <span>Spring Boot</span>
-                    <span>Node.js</span>
-                    <span>PHP</span>
-                    <span>REST APIs</span>
+                    <span>SQL</span>
+                    <span>C#</span>
+                    <span>Python</span>
                 </div>
             </div>
-
+            <div class="glass-card">
+                <h3>Frontend</h3>
+                <div class="tech-stack">
+                    <span>React.js</span>
+                    <span>Bootstrap</span>
+                    <span>jQuery</span>
+                    <span>Gulp.js</span>
+                    <span>Framer Motion</span>
+                    <span>Tailwind CSS</span>
+                    <span>HTML5 & CSS3</span>
+                </div>
+            </div>
+            <div class="glass-card">
+                <h3>Backend & CMS</h3>
+                <div class="tech-stack">
+                    <span>Node.js</span>
+                    <span>Express</span>
+                    <span>Spring Boot</span>
+                    <span>Laravel</span>
+                    <span>Drupal</span>
+                    <span>REST APIs</span>
+                    <span>Microservices</span>
+                </div>
+            </div>
             <div class="glass-card">
                 <h3>Cloud & DevOps</h3>
-
                 <div class="tech-stack">
                     <span>AWS</span>
+                    <span>Amazon Redshift</span>
                     <span>Docker</span>
                     <span>Kubernetes</span>
-                    <span>CI/CD</span>
-                    <span>Linux</span>
+                    <span>CI/CD (Bamboo)</span>
+                    <span>Nginx</span>
+                    <span>Linux/Unix</span>
                 </div>
             </div>
-
+            <div class="glass-card">
+                <h3>Databases</h3>
+                <div class="tech-stack">
+                    <span>MySQL</span>
+                    <span>PostgreSQL</span>
+                    <span>Firebase</span>
+                    <span>MongoDB</span>
+                    <span>Query Optimization</span>
+                    <span>Database Design</span>
+                </div>
+            </div>
+            <div class="glass-card">
+                <h3>Tools & IDEs</h3>
+                <div class="tech-stack">
+                    <span>Git</span>
+                    <span>VS Code</span>
+                    <span>PhpStorm</span>
+                    <span>Cursor</span>
+                    <span>IntelliJ IDEA</span>
+                    <span>GitHub Copilot</span>
+                    <span>Ngrok</span>
+                </div>
+            </div>
+            <div class="glass-card">
+                <h3>Monitoring & Reliability</h3>
+                <div class="tech-stack">
+                    <span>New Relic</span>
+                    <span>Sumo Logic</span>
+                    <span>PagerDuty</span>
+                    <span>Watchdog</span>
+                    <span>Root Cause Analysis</span>
+                    <span>On-call Rotation</span>
+                </div>
+            </div>
+            <div class="glass-card">
+                <h3>Core Competencies</h3>
+                <div class="tech-stack">
+                    <span>Microservices Design</span>
+                    <span>Cloud Architecture</span>
+                    <span>Full Stack Development</span>
+                    <span>Agile/SCRUM</span>
+                    <span>System Integration</span>
+                    <span>Performance Optimization</span>
+                    <span>Quality Assurance</span>
+                    <span>Cross-functional Teams</span>
+                </div>
+            </div>
         </div>
-
     </section>
 
     <!-- EXPERIENCE -->
-
     <section id="experience" class="hidden">
-
-        <h2 class="section-title">Experience</h2>
-
+        <h2 class="section-title">Professional Experience</h2>
         <div class="timeline">
-
             <div class="glass-card">
-                <h3>Associate Software Developer II</h3>
-                <p>PowerSchool India • 2022 - 2025</p>
-
+                <h3>Associate Software Developer II (R&D)</h3>
+                <p style="color: var(--secondary); font-weight: 600;">PowerSchool India • Bengaluru | Jul 2023 – Dec
+                    2025</p>
                 <p style="margin-top:1rem;">
-                    Built scalable LMS features, optimized AWS infrastructure,
-                    reduced production defects, and developed cloud-native
-                    microservices for enterprise applications.
+                    • Delivered scalable, production-grade features for Schoology LMS using PHP, Drupal, Laravel,
+                    Node.js, Spring Boot, React, TypeScript in high-availability multi-tenant SaaS environment
+                    <br>• Designed and implemented Node.js and Spring Boot RESTful APIs with unit & integration testing
+                    for stable, production-ready releases
+                    <br>• Reduced post-production defects by ~30% through instituting strong testing practices across
+                    end-to-end full-stack features
+                    <br>• Optimized student assessment page for improved load performance; resolved long-standing
+                    defects enhancing module stability
+                    <br>• Executed Amazon Redshift infrastructure migration (ra3.xlplus → dc2.large), delivering $6,000+
+                    annualized AWS cost savings (~$500/month)
+                    <br>• Drove USM (Common Standards) and Chalk integration with Schoology LMS via Node.js
+                    microservice, enabling standards-aligned lesson planning
+                    <br>• Led Arabic language localization initiative published in leading global journals, advancing
+                    product accessibility in international markets
+                    <br>• Monitored application health via Sumo Logic, New Relic, Watchdog; performed root-cause
+                    analysis on production issues
+                    <br>• Participated in PagerDuty on-call rotations for timely resolution of high-priority incidents
+                    and improved system uptime
+                    <br>• Maintained containerized development/deployment pipelines using Docker & Kubernetes; deployed
+                    and debugged containerized applications
                 </p>
             </div>
 
             <div class="glass-card">
-                <h3>Full Stack Development</h3>
-                <p>React • Java • AWS</p>
-
+                <h3>Engineering Intern (R&D)</h3>
+                <p style="color: var(--secondary); font-weight: 600;">PowerSchool India • Bengaluru | Sep 2022 – Jun
+                    2023</p>
                 <p style="margin-top:1rem;">
-                    Worked across frontend and backend systems with focus on
-                    scalable architecture, performance optimization,
-                    and modern UI development.
+                    • Contributed to large-scale product improvements for Business Plus using Angular and Gulp.js,
+                    focusing on framework upgrades and frontend optimization
+                    <br>• Enhanced backend features for Efinance Plus using C# and MySQL, improving data processing
+                    efficiency and supporting new business functionalities
                 </p>
             </div>
 
+            <div class="glass-card">
+                <h3>Education</h3>
+                <p style="color: var(--secondary); font-weight: 600;">VIT University • M. Tech Integrated Software
+                    Engineering</p>
+                <p style="margin-top:0.5rem;">
+                    Jul 2018 - Jul 2023
+                </p>
+            </div>
         </div>
-
     </section>
 
     <!-- PROJECTS -->
-
     <section id="projects" class="hidden">
-
-        <h2 class="section-title">Projects</h2>
-
+        <h2 class="section-title">Projects & Achievements</h2>
         <div class="project-grid">
-
             <div class="glass-card project-card">
-
-                <div class="project-img">🚀</div>
-
-                <h3>Schoology LMS</h3>
-
+                <div class="project-img">📚</div>
+                <h3>Schoology LMS Platform</h3>
                 <p>
-                    Enterprise LMS platform supporting large-scale student
-                    management and learning workflows.
+                    Enterprise learning management system serving thousands of students globally. Built with PHP,
+                    Drupal, Laravel, React.js, Node.js, Java, and Spring Boot. Implemented microservices for assessment
+                    management, standards integration (USM/Chalk), and multilingual support (Arabic localization).
                 </p>
-
             </div>
 
             <div class="glass-card project-card">
-
                 <div class="project-img">⚡</div>
-
-                <h3>AWS Optimization</h3>
-
+                <h3>AWS Infrastructure Optimization</h3>
                 <p>
-                    Reduced infrastructure costs and improved performance
-                    using scalable cloud-native architecture.
+                    Led Amazon Redshift migration and optimization strategy, reducing infrastructure costs by $6,000+
+                    annually (~$500/month). Implemented cost-efficient architecture while maintaining production SLAs
+                    and performance benchmarks for enterprise SaaS platform.
                 </p>
-
             </div>
 
             <div class="glass-card project-card">
-
-                <div class="project-img">💻</div>
-
-                <h3>Full Stack Systems</h3>
-
+                <div class="project-img">🌍</div>
+                <h3>IndiRoute - Smart Travel AI</h3>
                 <p>
-                    Developed end-to-end applications using React,
-                    Node.js, Java, and REST APIs.
+                    Built intelligent route planning application using Gemini Pro AI for dynamic cost calculation.
+                    Frontend: React + Tailwind CSS with Framer Motion animations. Backend: Firebase for auth & trip
+                    storage. Demonstrates full-stack capability with AI integration.
                 </p>
-
             </div>
 
-        </div>
+            <div class="glass-card project-card">
+                <div class="project-img">📊</div>
+                <h3>E-commerce Big Data Analysis</h3>
+                <p>
+                    Data analysis project using Hadoop, Hive, Python, and Tableau. Extracted insights from large-scale
+                    e-commerce datasets and created interactive visualizations for business intelligence and
+                    decision-making.
+                </p>
+            </div>
 
+            <div class="glass-card project-card">
+                <div class="project-img">🎓</div>
+                <h3>Online Quiz Portal</h3>
+                <p>
+                    Full-stack web application built with Java, MySQL, Servlet, JSP, and JavaScript. Features real-time
+                    quiz functionality, user authentication, and result tracking for educational assessment.
+                </p>
+            </div>
+
+            <div class="glass-card project-card">
+                <div class="project-img">🔧</div>
+                <h3>API Integration & Standards</h3>
+                <p>
+                    Expertise in complex API integrations (USM, Chalk standards), microservice design, cross-platform
+                    interoperability, and real-time data synchronization. Proven ability to handle multi-system
+                    integrations in high-scale environments.
+                </p>
+            </div>
+        </div>
     </section>
 
     <!-- CONTACT -->
-
     <section id="contact" class="contact hidden">
-
         <h2 class="section-title">Let's Connect</h2>
-
         <p>
-            Open to full-time opportunities, freelance work,
-            and exciting collaborations.
+            Open to full-time opportunities, freelance work, and exciting collaborations. Seeking Full Stack Developer
+            roles at product-driven companies.
         </p>
-
         <div class="socials">
-
-            <a href="mailto:skamaleshkumar25082000@gmail.com">✉️</a>
-
-            <a href="https://www.linkedin.com/in/s-kamalesh-kumar-a7482a17b/" target="_blank">in</a>
-
-            <a href="#">⚙️</a>
-
+            <a href="https://www.linkedin.com/in/s-kamalesh-kumar-a7482a17b/" target="_blank" title="LinkedIn">in</a>
+            <a href="https://github.com/iyambyte" target="_blank" title="GitHub">⚙️</a>
+            <a href="https://medium.com/@skamaleshkumar25082000" target="_blank" title="Medium">📝</a>
+            <a href="https://www.instagram.com/santa_kamal_/" target="_blank" title="Instagram">📸</a>
+            <a href="https://www.facebook.com/profile.php?id=100055764216335" target="_blank" title="Facebook">f</a>
+            <a href="https://builder.aws.com/community/@kammukamal" target="_blank" title="AWS Builder">🏗️</a>
+            <a href="mailto:skamaleshkumar25082000@gmail.com" title="Email">✉️</a>
         </div>
-
     </section>
 
     <!-- FOOTER -->
-
     <footer>
-        © 2026 Kamalesh Kumar • Full Stack Software Engineer
+        <p style="margin-bottom: 0.5rem;">© 2026 Kamalesh Kumar • Full Stack Software Engineer</p>
+        <p>Reach out: <a href="mailto:skamaleshkumar25082000@gmail.com"
+                style="color: #06b6d4; text-decoration: none; font-weight: 600;">skamaleshkumar25082000@gmail.com</a>
+        </p>
     </footer>
 
     <!-- JS -->
-
     <script>
 
         // Scroll Animation
-
         const observer = new IntersectionObserver((entries) => {
-
             entries.forEach((entry) => {
-
                 if (entry.isIntersecting) {
                     entry.target.classList.add('show');
                 }
-
             });
-
         });
 
         document.querySelectorAll('.hidden').forEach((el) => {
@@ -615,14 +771,17 @@
         });
 
         // Cursor Glow
-
         const glow = document.querySelector('.cursor-glow');
 
         document.addEventListener('mousemove', (e) => {
-
             glow.style.left = e.clientX + 'px';
             glow.style.top = e.clientY + 'px';
+        });
 
+        // Smooth scroll for logo click
+        document.querySelector('.logo').addEventListener('click', (e) => {
+            e.preventDefault();
+            document.querySelector('.hero').scrollIntoView({ behavior: 'smooth' });
         });
 
     </script>
@@ -630,4 +789,3 @@
 </body>
 
 </html>
-```
